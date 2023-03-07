@@ -1,5 +1,5 @@
 import * as S from "./styled"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { Button } from "../../Components/Button/Button"
 import { Header } from "../../Components/Header/Header"
@@ -56,7 +56,7 @@ export function Login() {
         </S.Column>
         <S.Column>
           <S.Wrapper>
-            <S.TitleLogin>Faça seu cadastro</S.TitleLogin>
+            <S.TitleLogin>Faça seu login</S.TitleLogin>
             <S.SubitleLogin>Faça seu login e make the change._</S.SubitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input name="email"
@@ -80,7 +80,7 @@ export function Login() {
             </form>
             <S.Row>
               <S.ForgotText>Esqueci minha senha</S.ForgotText>
-              <S.CreateText>Criar conta</S.CreateText>
+              <Link to="/createAccount"><S.CreateText>Criar conta</S.CreateText></Link>
             </S.Row>
           </S.Wrapper>
         </S.Column>

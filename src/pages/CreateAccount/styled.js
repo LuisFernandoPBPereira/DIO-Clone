@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-export const Login = styled.main`
+export const CreateAccount = styled.main`
     width: 100%;
     max-width: 80%;
     margin: 0 auto;
-    margin-top: 120px;
+    margin-top: 15vh;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 225px;
+    gap: 125px;
 `
 
 export const Wrapper = styled.div`
-    width: fit-content;
+    max-width: 350px;
 `
 
 export const Column = styled.div`
@@ -35,14 +35,13 @@ export const Title = styled.h2`
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
+    width: 320px;
     margin-bottom: 20px;
     line-height: 44px;
     color: white;
-
-
 `
 
-export const TitleLogin = styled.p`
+export const TitleCreateAccount = styled.p`
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
@@ -51,7 +50,7 @@ export const TitleLogin = styled.p`
     line-height: 44px;
 `
 
-export const SubitleLogin = styled.p`
+export const SubitleCreateAccount = styled.p`
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 400;
@@ -60,22 +59,26 @@ export const SubitleLogin = styled.p`
     line-height: 25px;
 `
 
-export const ForgotText = styled.p`
+export const UserTermsText = styled.p`
     font-family: "Open Sans";
     font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 18px;
     line-height: 19px;
 
-    color: #E5E044;
+    color: #FFFFFF;
 `
 
-export const CreateText = styled.p`
+export const LoginText = styled.p`
     font-family: "Open Sans";
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 19px;
 
+    color: #FFFFFF;
+`
+
+export const TextHighlight = styled.span`
     color: #23DD7A;
 `

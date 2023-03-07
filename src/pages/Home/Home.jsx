@@ -16,7 +16,7 @@ export function Home() {
     <>
       <Header/>
       <S.Home>
-        <div>
+        <div className="startNow">
           <S.Title> 
             <S.TitleHighlight>
               Implemente

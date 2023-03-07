@@ -1,8 +1,11 @@
 import { Button } from '../Button/Button'
 import logo from "../../Assets/logo-dio.png"
 import * as S from './styled'
+import { Link } from 'react-router-dom'
 
 export function Header({ isAuth }) {
+
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -25,9 +28,9 @@ export function Header({ isAuth }) {
             </>
           ) : (
             <>
-              <S.MenuRight href='*'>Home</S.MenuRight>
-              <Button label={"Entrar"}/>
-              <Button label={"Cadastrar"}/>
+              <Link to="/"><S.MenuRight>Home</S.MenuRight></Link>
+              <Link to="/login"><Button label={"Entrar"}/></Link>
+              <Link to="/createAccount"><Button label={"Cadastrar"}/></Link>
             </>
           )}
         </S.Row>

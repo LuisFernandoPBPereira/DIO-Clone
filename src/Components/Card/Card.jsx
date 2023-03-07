@@ -1,9 +1,10 @@
 import * as S from "./styled"
+import imgBackground from "../../Assets/imgBackground.svg"
 
 export function Card() {
   return (
     <S.Card>
-        <S.ImageBackground/>
+        <S.ImageBackground src={imgBackground}/>
         <S.Content>
             <S.UserInfo>
                 <S.UserPicture src="https://github.com/LuisFernandoPBPereira.png"/>

@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const Header = styled.header`
     width: 100%;
-    max-width: 80%;
     height: 47px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin: 0 auto;
 `
@@ -57,12 +56,13 @@ export const Menu = styled.a`
     text-decoration: none;
 `
 
-export const MenuRight = styled.a`
+export const MenuRight = styled.span`
     font-family: "Open Sans";
     font-style: normal;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 25px;
     color: #FFFFFF;
+    font-weight: 400;
     margin-right: 12px;
     text-decoration: none;
 `

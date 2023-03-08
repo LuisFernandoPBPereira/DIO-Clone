@@ -16,16 +16,21 @@ const schema = yup.object({
 }).required()
 
 
-export function Login() {
+interface IFormData{
+  email: string,
+  password: string
+}
+
+export function CreateAccount() {
 
   const navigate = useNavigate()
 
-  const  {control, handleSubmit, formState: { errors } }  = useForm({
+  const  {control, handleSubmit, formState: { errors } }  = useForm<IFormData>({
     resolver: yupResolver(schema),
     mode: "onChange"
   })
 
-  const onSubmit = async formData => {
+  const onSubmit = async (formData: IFormData) => {
     try {
       const { data } = await api.get(`users?email=${formData.email}&senha=${formData.password}`)
       if(data.length === 1){
@@ -39,14 +44,10 @@ export function Login() {
     }
   };
 
-  function handleClickSignIn(){
-    navigate("/feed")
-  }
-
   return (
     <>
       <Header/>
-      <S.Login>
+      <S.CreateAccount>
         <S.Column>
           <S.Title> 
             A plataforma para você aprender com experts, dominar as
@@ -56,9 +57,15 @@ export function Login() {
         </S.Column>
         <S.Column>
           <S.Wrapper>
-            <S.TitleLogin>Faça seu login</S.TitleLogin>
-            <S.SubitleLogin>Faça seu login e make the change._</S.SubitleLogin>
+            <S.TitleCreateAccount>Comece agora grátis</S.TitleCreateAccount>
+            <S.SubitleCreateAccount>Crie sua conta e make the change._</S.SubitleCreateAccount>
             <form onSubmit={handleSubmit(onSubmit)}>
+            <Input name="Nome completo"
+                     errorMessage={errors?.email?.message}
+                     control={control}
+                     type="email"
+                     placeholder="Nome completo"
+                     />
               <Input name="email"
                      errorMessage={errors?.email?.message}
                      control={control}
@@ -71,7 +78,7 @@ export function Login() {
                      type={"password"}
                      placeholder="Senha"
                      />
-              <Button label={"Entrar"} 
+              <Button label={"Criar minha conta"} 
                       variant={"secondary"} 
                       // onClick={handleClickSignIn}
                       type="submit"
@@ -79,12 +86,23 @@ export function Login() {
                       />
             </form>
             <S.Row>
-              <S.ForgotText>Esqueci minha senha</S.ForgotText>
-              <Link to="/createAccount"><S.CreateText>Criar conta</S.CreateText></Link>
+              <S.UserTermsText>
+                Ao clicar em "criar minha conta",
+                declaro que aceito as Políticas de 
+                Privacidade e os Termos de Uso da DIO
+              </S.UserTermsText>
+            </S.Row>
+            <S.Row>
+              <S.LoginText>
+                Já tenho conta. 
+                <Link to="/login">
+                  <S.TextHighlight> Fazer login</S.TextHighlight>
+                </Link>
+              </S.LoginText>
             </S.Row>
           </S.Wrapper>
         </S.Column>
-      </S.Login>
+      </S.CreateAccount>
     </>
   )
 }

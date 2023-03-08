@@ -3,7 +3,11 @@ import logo from "../../Assets/logo-dio.png"
 import * as S from './styled'
 import { Link } from 'react-router-dom'
 
-export function Header({ isAuth }) {
+interface IHeader{
+  isAuth?: boolean
+}
+
+export function Header({ isAuth }: IHeader) {
 
 
   return (
@@ -29,8 +33,8 @@ export function Header({ isAuth }) {
           ) : (
             <>
               <Link to="/"><S.MenuRight>Home</S.MenuRight></Link>
-              <Link to="/login"><Button label={"Entrar"}/></Link>
-              <Link to="/createAccount"><Button label={"Cadastrar"}/></Link>
+              <Link to="/login"><Button label="Entrar"/></Link>
+              <Link to="/createAccount"><Button label="Cadastrar"/></Link>
             </>
           )}
         </S.Row>

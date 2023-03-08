@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.button`
+interface IButtonStyled{
+    variant:string
+}
+
+export const Button = styled.button<IButtonStyled>`
     background: #565656;
     border-radius: 22px;
     position: relative;
@@ -15,7 +19,7 @@ export const Button = styled.button`
         cursor: pointer;
     }
 
-    ${({variant}) => variant != "primary" && css`
+    ${({variant}) => variant !== "primary" && css`
         min-width: 167px;
         height: 33px;
         

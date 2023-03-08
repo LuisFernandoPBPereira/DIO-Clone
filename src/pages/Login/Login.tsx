@@ -15,17 +15,21 @@ const schema = yup.object({
   password: yup.string().min(3, "No mínimo 3 caracteres").required("Campo obrigatório"),
 }).required()
 
+interface IFormData{
+  email: string,
+  password: string
+}
 
-export function CreateAccount() {
+export function Login() {
 
   const navigate = useNavigate()
 
-  const  {control, handleSubmit, formState: { errors } }  = useForm({
+  const  {control, handleSubmit, formState: { errors } }  = useForm<IFormData>({
     resolver: yupResolver(schema),
     mode: "onChange"
   })
 
-  const onSubmit = async formData => {
+  const onSubmit = async (formData : IFormData) => {
     try {
       const { data } = await api.get(`users?email=${formData.email}&senha=${formData.password}`)
       if(data.length === 1){
@@ -39,14 +43,14 @@ export function CreateAccount() {
     }
   };
 
-  function handleClickSignIn(){
-    navigate("/feed")
-  }
+  // function handleClickSignIn(){
+  //   navigate("/feed")
+  // }
 
   return (
     <>
       <Header/>
-      <S.CreateAccount>
+      <S.Login>
         <S.Column>
           <S.Title> 
             A plataforma para você aprender com experts, dominar as
@@ -56,15 +60,9 @@ export function CreateAccount() {
         </S.Column>
         <S.Column>
           <S.Wrapper>
-            <S.TitleCreateAccount>Comece agora grátis</S.TitleCreateAccount>
-            <S.SubitleCreateAccount>Crie sua conta e make the change._</S.SubitleCreateAccount>
+            <S.TitleLogin>Faça seu login</S.TitleLogin>
+            <S.SubitleLogin>Faça seu login e make the change._</S.SubitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <Input name="Nome completo"
-                     errorMessage={errors?.email?.message}
-                     control={control}
-                     type="email"
-                     placeholder="Nome completo"
-                     />
               <Input name="email"
                      errorMessage={errors?.email?.message}
                      control={control}
@@ -77,7 +75,7 @@ export function CreateAccount() {
                      type={"password"}
                      placeholder="Senha"
                      />
-              <Button label={"Criar minha conta"} 
+              <Button label={"Entrar"} 
                       variant={"secondary"} 
                       // onClick={handleClickSignIn}
                       type="submit"
@@ -85,23 +83,12 @@ export function CreateAccount() {
                       />
             </form>
             <S.Row>
-              <S.UserTermsText>
-                Ao clicar em "criar minha conta",
-                declaro que aceito as Políticas de 
-                Privacidade e os Termos de Uso da DIO
-              </S.UserTermsText>
-            </S.Row>
-            <S.Row>
-              <S.LoginText>
-                Já tenho conta. 
-                <Link to="/login">
-                  <S.TextHighlight> Fazer login</S.TextHighlight>
-                </Link>
-              </S.LoginText>
+              <S.ForgotText>Esqueci minha senha</S.ForgotText>
+              <Link to="/createAccount"><S.CreateText>Criar conta</S.CreateText></Link>
             </S.Row>
           </S.Wrapper>
         </S.Column>
-      </S.CreateAccount>
+      </S.Login>
     </>
   )
 }

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IProgress{
+    percentual: number
+}
+
 export const UserInfo = styled.div`
     display: flex;
     flex-direction: row;
@@ -23,7 +27,7 @@ export const NameText = styled.div`
     color: #FFFFFF;
 `
 
-export const Progress = styled.div`
+export const Progress = styled.div<IProgress>`
     width: 180px;
     height: 6px;
     background-color: #FFFFFF;

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IColumn{
+    flex: number
+}
+
 export const Feed = styled.main`
     width: 100%;
     max-width: 80%;
@@ -31,7 +35,7 @@ export const TitleHighlight = styled.span`
     margin-bottom: 24px;
 `
 
-export const Column = styled.div`
+export const Column = styled.div<IColumn>`
     flex: ${({flex}) => flex};
     padding-right: 24px;
 `

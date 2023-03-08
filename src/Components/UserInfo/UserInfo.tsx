@@ -1,6 +1,13 @@
+
 import * as S from "./styled"
 
-export function UserInfo({name, image, percentual}) {
+interface IUserInfo{
+  name: string,
+  image?: string,
+  percentual: number
+}
+
+export function UserInfo({name, image, percentual}: IUserInfo) {
   return (
     <S.UserInfo>
         <S.UserPicture src={image}/>

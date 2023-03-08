@@ -1,21 +1,25 @@
-import { Button } from '../Button/Button'
-import logo from "../../Assets/logo-dio.png"
 import * as S from './styled'
+import logo from "../../Assets/logo-dio.png"
 import { Link } from 'react-router-dom'
+import { Button } from '../Button/Button'
+import { useAuth } from '../../hooks/useAuth'
 
-interface IHeader{
-  isAuth?: boolean
-}
+export function Header() {
+  const { user, handleSignOut } = useAuth()
 
-export function Header({ isAuth }: IHeader) {
-
-
+  /**
+   * Usando o contexto, podemos fazer com que, se o usuário tenha
+   * o id, o header mude instantaneamente para o Header de 
+   * usuário logado, conforme as condições abaixo
+   */
   return (
     <S.Wrapper>
       <S.Header>
         <S.Row>
-          <img src={logo} alt="Logo da DIO"/>
-          {isAuth ? (
+          <Link to="/">
+            <img src={logo} alt="Logo da DIO"/>
+          </Link>
+          {user.id ? (
             <>
               <S.SearchInput>
                   <S.Input placeholder='Buscar...'/>
@@ -26,9 +30,10 @@ export function Header({ isAuth }: IHeader) {
           ) : null}
         </S.Row>
         <S.Row>
-          {isAuth ? (
+          {user.id ? (
             <>
               <S.UserPicture src='https://github.com/LuisFernandoPBPereira.png'/>
+              <Link to="/"><Button onClick={handleSignOut} label='Sair'/></Link>
             </>
           ) : (
             <>

@@ -4,13 +4,13 @@ import { Card } from "../../Components/Card/Card"
 import { UserInfo } from "../../Components/UserInfo/UserInfo"
 
 export function Feed() {
+
   return (
     <>
-      <Header isAuth/>
+      <Header/>
       <S.Feed>
         <S.Column flex={3}>
           <S.Title>Feed</S.Title>
-          <Card/>
           <Card/>
           <Card/>
           <Card/>

@@ -1,51 +1,41 @@
 import * as S from "./styled"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { Button } from "../../Components/Button/Button"
 import { Header } from "../../Components/Header/Header"
 import { Input } from "../../Components/Input/Input"
 
-import { api } from "../../services/api"
-
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { useAuth } from "../../hooks/useAuth"
 
 const schema = yup.object({
   email: yup.string().email("email não é válido").required("Campo obrigatório"),
   password: yup.string().min(3, "No mínimo 3 caracteres").required("Campo obrigatório"),
 }).required()
 
+//Interface das tipagens do Formulário
 interface IFormData{
   email: string,
   password: string
 }
 
 export function Login() {
+  //Chamamos o contexto de autenticação com a função de Login
+  const { handleLogin } = useAuth()
 
-  const navigate = useNavigate()
-
-  const  {control, handleSubmit, formState: { errors } }  = useForm<IFormData>({
-    resolver: yupResolver(schema),
-    mode: "onChange"
+  const  {control,
+          handleSubmit,
+          formState: { errors } }  = 
+          useForm<IFormData>({
+            resolver: yupResolver(schema),
+            mode: "onChange"
   })
 
+  //Ao executaqr a função de onSubmit, handleLogin é chamada
   const onSubmit = async (formData : IFormData) => {
-    try {
-      const { data } = await api.get(`users?email=${formData.email}&senha=${formData.password}`)
-      if(data.length === 1){
-        navigate("/feed")
-      }
-      else{
-        alert("Email ou senha inválido")
-      }
-    } catch (error) {
-      alert("Houve um erro, tente novamente")
-    }
+    handleLogin(formData)
   };
-
-  // function handleClickSignIn(){
-  //   navigate("/feed")
-  // }
 
   return (
     <>
